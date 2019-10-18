@@ -10,7 +10,7 @@
   function toggleView() {
     alert("enter");
     id("menue-view").classList.toggle("hidden");
-    id.("game-view").classList.toggle("hidden");
+    id("game-view").classList.toggle("hidden");
   }
 
   /**
