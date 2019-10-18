@@ -9,7 +9,7 @@
 body, button, select, input {
   text-align: center;
   font-size: 12pt;
-  font-family: Helvetica, Verdana, sans-serif;
+  font-family: "Helvetica", "Verdana", sans-serif;
 }
 
 main {
@@ -41,7 +41,7 @@ h2 {
   color: white;
 }
 
-#details-bar, #board, .card{
+#details-bar, #board, .card {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -74,8 +74,8 @@ h2 {
   height: 85%;
 }
 
-.card .selected {
-  box-shadow: 6px, -6px, #636363;
+.selected {
+  box-shadow: 6px 6px #636363;
 }
 
 .card p {
@@ -84,8 +84,8 @@ h2 {
   text-align: center;
 }
 
-.card .hide-imgs > img{
- display: none;
+.hide-imgs > img, .hidden {
+  display: none;
 }
 
 #board {
