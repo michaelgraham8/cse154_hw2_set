@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 (function() {
   window.addEventListener("load", clickListen);
