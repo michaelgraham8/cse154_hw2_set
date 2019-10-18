@@ -8,8 +8,9 @@
     id("back-btn").addEventListener("click", toggleView);
   }
   function toggleView() {
-    id("menue-view").classList.add("hidden");
-    id("game-view").classList.remove("hidden");
+    alert("enter");
+    id("menue-view").classList.toggle("hidden");
+    id.("game-view").classList.toggle("hidden");
   }
 
   /**
