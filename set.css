@@ -40,3 +40,59 @@ h2 {
   border: 5pt solid black;
   color: white;
 }
+
+#details-bar, #board, .card{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+#details-bar {
+  align-items: center;
+  background-color: black;
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+  color: white;
+  font-size: 14pt;
+}
+
+.card {
+  width: 220px;
+  height: 95px;
+  border-style: solid;
+  border-color: black;
+  border-width: 0.35em;
+  border-radius: 1em;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.card > img {
+  height: 85%;
+}
+
+.card .selected {
+  box-shadow: 6px, -6px, #636363;
+}
+
+.card p {
+  font-weight: bold;
+  font-size: 16pt;
+  text-align: center;
+}
+
+.card .hide-imgs > img{
+ display: none;
+}
+
+#board {
+  border-style: solid;
+  border-color: black;
+  border-left-width: 5pt;
+  border-right-width: 5pt;
+  border-bottom-width: 5pt;
+  padding: 20px;
+}
