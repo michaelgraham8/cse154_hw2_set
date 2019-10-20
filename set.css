@@ -61,7 +61,7 @@ h2 {
   font-size: 14pt;
 }
 
-.card, #board {
+.card {
   border-style: solid;
   border-color: black;
 }
@@ -98,8 +98,6 @@ h2 {
   border-left-width: 5pt;
   border-right-width: 5pt;
   border-bottom-width: 5pt;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px;
+  border-color: black;
 }
