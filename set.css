@@ -1,9 +1,10 @@
 /*
-  NAME:
-  DATE:
-  SECTION/TA:
+  Michael Graham
+  10/19/19
+  Section AL - Tal Wolman
+  HW2
 
-  INSERT 2-3 SENTENCE DESCRIPTION OF FILE HERE
+  The is the stylesheet thats styles the content on set.html
  */
 
 body, button, select, input {
@@ -48,26 +49,29 @@ h2 {
   justify-content: space-evenly;
 }
 
-#details-bar {
+#details-bar, .card {
   align-items: center;
+}
+
+#details-bar {
   background-color: black;
   border-top-left-radius: 0.5em;
   border-top-right-radius: 0.5em;
   color: white;
   font-size: 14pt;
 }
-
+.card, #board {
+  border-style: solid;
+  border-color: black;
+}
 .card {
   width: 220px;
   height: 95px;
-  border-style: solid;
-  border-color: black;
   border-width: 0.35em;
   border-radius: 1em;
   margin-top: 5px;
   margin-bottom: 5px;
   cursor: pointer;
-  align-items: center;
 }
 
 .card > img {
@@ -89,8 +93,6 @@ h2 {
 }
 
 #board {
-  border-style: solid;
-  border-color: black;
   border-left-width: 5pt;
   border-right-width: 5pt;
   border-bottom-width: 5pt;
