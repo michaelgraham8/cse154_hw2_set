@@ -14,8 +14,8 @@
   window.addEventListener("load", clickListen);
 
   /**
-  * Listens for the user to click a button, then calls toggleView function
-  */
+   * Listens for the user to click a button, then calls toggleView function
+   */
   function clickListen() {
     id("start-btn").addEventListener("click", toggleView);
     id("back-btn").addEventListener("click", toggleView);

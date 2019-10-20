@@ -60,10 +60,12 @@ h2 {
   color: white;
   font-size: 14pt;
 }
+
 .card, #board {
   border-style: solid;
   border-color: black;
 }
+
 .card {
   width: 220px;
   height: 95px;
