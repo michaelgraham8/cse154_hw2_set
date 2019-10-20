@@ -62,11 +62,6 @@ h2 {
 }
 
 .card {
-  border-style: solid;
-  border-color: black;
-}
-
-.card {
   width: 220px;
   height: 95px;
   border-width: 0.35em;
@@ -74,6 +69,8 @@ h2 {
   margin-top: 5px;
   margin-bottom: 5px;
   cursor: pointer;
+  border-style: solid;
+  border-color: black;
 }
 
 .card > img {
@@ -98,6 +95,11 @@ h2 {
   border-left-width: 5pt;
   border-right-width: 5pt;
   border-bottom-width: 5pt;
+  border-left-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-color: black;
+  border-right-color: black;
+  border-bottom-color: black;
   padding: 20px;
-  border-color: black;
 }
