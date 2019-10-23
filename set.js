@@ -36,7 +36,7 @@
 
   function fillBoard() {
     id("board").innerHTML = "";
-    for(let i = 0; i < 12; i++) {
+    for (let i = 0; i < 12; i++) {
       generateUniqueCard(false);
     }
   }
@@ -50,11 +50,11 @@
   }
 
   /**
-  * Returns an array of randomly generated attributes. If in easy mode, "Style" attribute will
-  * always be "Solid"
-  * @param {boolean} isEasy - Whether the gamemode is set to "Easy"
-  * @return {array} attributes - Array of attributes
-  */
+   * Returns an array of randomly generated attributes. If in easy mode, "Style" attribute will
+   * always be "Solid"
+   * @param {boolean} isEasy - Whether the gamemode is set to "Easy"
+   * @return {array} attributes - Array of attributes
+   */
   function generateRandomAttributes(isEasy) {
     let attributes = [
       STYLE_ARRAY[Math.floor(Math.random() * 3)],
@@ -62,7 +62,7 @@
       COLOR_ARRAY[Math.floor(Math.random() * 3)],
       COUNT_ARRAY[Math.floor(Math.random() * 3)]
     ];
-    if(isEasy) {
+    if (isEasy) {
       attributes[0] = "solid";
     }
     return attributes;
@@ -75,7 +75,7 @@
     let attributes = findUniqueAttributes(isEasy);
     card.id = generateId(attributes);
 
-    for(let i = 1; i <= attributes[3]; i++) {
+    for (let i = 1; i <= attributes[3]; i++) {
       let image = document.createElement("img");
       image.src = "img/" + generateSrc(attributes) + ".png";
       image.alt = generateId(attributes);
@@ -97,10 +97,10 @@
     let newCardId = generateId(attributes);
     let cards = qsa(".card");
     let idArray = [];
-    for(let i = 0; i < cards.length; i++) {
-        idArray.push(cards[i].getAttribute("id"));
+    for (let i = 0; i < cards.length; i++) {
+      idArray.push(cards[i].getAttribute("id"));
     }
-    if(idArray.includes(newCardId)) {
+    if (idArray.includes(newCardId)) {
       attributes = findUniqueAttributes(isEasy);
     }
     return attributes;
@@ -117,26 +117,26 @@
   function cardSelected() {
     this.classList.toggle("selected");
     let test = qsa(".selected");
-    if(test.length === 3) {
-      if(isASet(test)) {
-        for(let i = 0; i < test.length; i++) {
-          let a = document.createTextNode("SET!");
-          let p = document.createElement("p");
+    if (test.length === 3) {
+      if (isASet(test)) {
+        for (let i = 0; i < test.length; i++) {
+          let text = document.createTextNode("SET!");
+          let newP = document.createElement("p");
           p.appendChild(a);
           test[i].appendChild(p);
           test[i].classList.toggle("selected");
           test[i].classList.toggle("hide-imgs");
         }
       } else {
-          for(let i = 0; i < test.length; i++) {
-            let a = document.createTextNode("Not a Set :(");
-            let p = document.createElement("p");
-            p.appendChild(a);
-            test[i].appendChild(p);
-            test[i].classList.toggle("selected");
-            test[i].classList.toggle("hide-imgs");
-          }
+        for (let i = 0; i < test.length; i++) {
+          let text = document.createTextNode("Not a Set :(");
+          let newP = document.createElement("p");
+          p.appendChild(a);
+          test[i].appendChild(p);
+          test[i].classList.toggle("selected");
+          test[i].classList.toggle("hide-imgs");
         }
+      }
     }
   }
 
@@ -175,21 +175,21 @@
   }
 
   /**
- * Returns the array of elements that match the given CSS selector.
- * @param {string} selector - CSS query selector
- * @returns {object[]} array of DOM objects matching the query.
- */
-function qsa(selector) {
-  return document.querySelectorAll(selector);
-}
+   * Returns the array of elements that match the given CSS selector.
+   * @param {string} selector - CSS query selector
+   * @returns {object[]} array of DOM objects matching the query.
+   */
+  function qsa(selector) {
+    return document.querySelectorAll(selector);
+  }
 
-/**
- * Returns the first element that matches the given CSS selector.
- * @param {string} selector - CSS query selector.
- * @returns {object} The first DOM object matching the query.
- */
-function qs(selector) {
-  return document.querySelector(selector);
-}
+  /**
+   * Returns the first element that matches the given CSS selector.
+   * @param {string} selector - CSS query selector.
+   * @returns {object} The first DOM object matching the query.
+   */
+  function qs(selector) {
+    return document.querySelector(selector);
+  }
 
 })();
