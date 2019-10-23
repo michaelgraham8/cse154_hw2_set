@@ -87,7 +87,7 @@ h2 {
   text-align: center;
 }
 
-.hide-imgs > img, .hidden {
+.hide-imgs img, .hidden {
   display: none;
 }
 
