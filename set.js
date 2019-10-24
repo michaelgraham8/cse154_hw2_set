@@ -21,6 +21,8 @@
   const SECONDS_IN_MINUTE = 60;
   const EASY_NUMBER = 9;
   const STANDARD_NUMBER = 12;
+  const SECOND_PENALTY = 15;
+  const
 
   let timerId;
   let remainingSeconds;
@@ -240,21 +242,26 @@
           id("set-count").textContent = "" + setCount;
           displayMessage(selectedCards, "SET!");
         } else {
-          if (remainingSeconds < 15) {
+          if (remainingSeconds < SECOND_PENALTY) {
             remainingSeconds = 0;
           } else {
-            remainingSeconds -= 15;
+            remainingSeconds -= SECOND_PENALTY;
           }
           displayTime();
           displayMessage(selectedCards, "Not a Set :(");
         }
         setTimeout(function() {
-          genNewCards(selectedCards);}
-          , SECOND);
+          genNewCards(selectedCards);
+        }, SECOND);
       }
     }
   }
 
+  /**
+   * Hides the images currently on the card and displays the passed-in message
+   * @param {array} selectedCards - An array of div elements representing cards
+   * @param {string} message - Message to be displayed on the cards
+   */
   function displayMessage(selectedCards, message) {
     for (let i = 0; i < selectedCards.length; i++) {
       let newP = document.createElement("p");
