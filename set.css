@@ -8,9 +8,12 @@
  */
 
 body, button, select, input {
-  text-align: center;
   font-size: 12pt;
   font-family: "Helvetica", "Verdana", sans-serif;
+}
+
+.card p, body, button, select, input {
+  text-align: center;
 }
 
 main {
@@ -26,6 +29,9 @@ button, select {
 
 h2 {
   text-decoration: underline;
+}
+
+h2, .card p {
   font-size: 16pt;
 }
 
@@ -39,6 +45,9 @@ h2 {
   background-color: #6F77ED;
   border-radius: 0.35em;
   border: 5pt solid black;
+}
+
+#menu-view > article, #details-bar {
   color: white;
 }
 
@@ -57,7 +66,6 @@ h2 {
   background-color: black;
   border-top-left-radius: 0.5em;
   border-top-right-radius: 0.5em;
-  color: white;
   font-size: 14pt;
 }
 
@@ -83,8 +91,6 @@ h2 {
 
 .card p {
   font-weight: bold;
-  font-size: 16pt;
-  text-align: center;
 }
 
 .hide-imgs img, .hidden {
