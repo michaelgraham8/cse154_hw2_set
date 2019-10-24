@@ -16,7 +16,11 @@
   const SHAPE_ARRAY = ["diamond", "oval", "squiggle"];
   const COLOR_ARRAY = ["red", "green", "purple"];
   const COUNT_ARRAY = [1, 2, 3];
+  const ARRAY_LENGTH_VAR = 3;
   const SECOND = 1000;
+  const SECONDS_IN_MINUTE = 60;
+  const EASY_NUMBER = 9;
+  const STANDARD_NUMBER = 12;
 
   let timerId;
   let remainingSeconds;
@@ -43,7 +47,7 @@
     if (remainingSeconds > 0) {
       id("board").innerHTML = "";
       for (let i = 0; i < totalCards; i++) {
-        id("board").appendChild(generateUniqueCard(totalCards === 9));
+        id("board").appendChild(generateUniqueCard(totalCards === EASY_NUMBER));
       }
     }
   }
@@ -73,9 +77,9 @@
     }
 
     if (difficulty === "easy") {
-      totalCards = 9;
+      totalCards = EASY_NUMBER;
     } else {
-      totalCards = 12;
+      totalCards = STANDARD_NUMBER;
     }
   }
 
@@ -85,6 +89,8 @@
   function toggleView() {
     id("menu-view").classList.toggle("hidden");
     id("game-view").classList.toggle("hidden");
+    setCount = 0;
+    id("set-count").textContent = "" + setCount;
   }
 
   /**
@@ -95,10 +101,10 @@
    */
   function generateRandomAttributes(isEasy) {
     let attributes = [
-      STYLE_ARRAY[Math.floor(Math.random() * 3)],
-      SHAPE_ARRAY[Math.floor(Math.random() * 3)],
-      COLOR_ARRAY[Math.floor(Math.random() * 3)],
-      COUNT_ARRAY[Math.floor(Math.random() * 3)]
+      STYLE_ARRAY[Math.floor(Math.random() * ARRAY_LENGTH_VAR)],
+      SHAPE_ARRAY[Math.floor(Math.random() * ARRAY_LENGTH_VAR)],
+      COLOR_ARRAY[Math.floor(Math.random() * ARRAY_LENGTH_VAR)],
+      COUNT_ARRAY[Math.floor(Math.random() * ARRAY_LENGTH_VAR)]
     ];
     if (isEasy) {
       attributes[0] = "solid";
@@ -115,10 +121,11 @@
     let card = document.createElement("div");
     card.classList.add("card");
     card.addEventListener("click", cardSelected);
-    let attributes = findUniqueAttributes(totalCards === 9);
+    let difficulty = (isEasy === (totalCards === EASY_NUMBER));
+    let attributes = findUniqueAttributes(difficulty);
     card.id = generateId(attributes);
 
-    for (let i = 1; i <= attributes[3]; i++) {
+    for (let i = 1; i <= attributes[ARRAY_LENGTH_VAR]; i++) {
       let image = document.createElement("img");
       image.src = "img/" + generateSrc(attributes) + ".png";
       image.alt = generateId(attributes);
@@ -142,7 +149,7 @@
    * @return {string} Newly generated id
    */
   function generateId(attributes) {
-    return generateSrc(attributes) + "-" + attributes[3];
+    return generateSrc(attributes) + "-" + attributes[ARRAY_LENGTH_VAR];
   }
 
   /**
@@ -152,7 +159,8 @@
    * @return {array} attributes - Array that makes up a unique attribute combination
    */
   function findUniqueAttributes(isEasy) {
-    let attributes = generateRandomAttributes(totalCards === 9);
+    let difficulty = (isEasy === (totalCards === EASY_NUMBER));
+    let attributes = generateRandomAttributes(difficulty);
     let newCardId = generateId(attributes);
     let cards = qsa(".card");
     let idArray = [];
@@ -160,7 +168,7 @@
       idArray.push(cards[i].getAttribute("id"));
     }
     if (idArray.includes(newCardId)) {
-      attributes = findUniqueAttributes(totalCards === 9);
+      attributes = findUniqueAttributes(difficulty);
     }
     return attributes;
   }
@@ -180,8 +188,8 @@
    * Uses the total number of remaining seconds to put the timer in MM:SS format on the board
    */
   function displayTime() {
-    let minutes = Math.floor(remainingSeconds / 60);
-    let seconds = remainingSeconds - (minutes * 60);
+    let minutes = Math.floor(remainingSeconds / SECONDS_IN_MINUTE);
+    let seconds = remainingSeconds - (minutes * SECONDS_IN_MINUTE);
     if (remainingSeconds < 0) {
       id("time").textContent = "00:00";
     } else if (minutes < 10 && seconds < 10) {
@@ -226,17 +234,11 @@
     if (remainingSeconds > 0) {
       this.classList.toggle("selected");
       let selectedCards = qsa(".selected");
-      if (selectedCards.length === 3) {
+      if (selectedCards.length === ARRAY_LENGTH_VAR) {
         if (isASet(selectedCards)) {
           setCount++;
           id("set-count").textContent = "" + setCount;
-          for (let i = 0; i < selectedCards.length; i++) {
-            let newP = document.createElement("p");
-            newP.appendChild(document.createTextNode("SET!"));
-            selectedCards[i].appendChild(newP);
-            selectedCards[i].classList.toggle("selected");
-            selectedCards[i].classList.toggle("hide-imgs");
-          }
+          displayMessage(selectedCards, "SET!");
         } else {
           if (remainingSeconds < 15) {
             remainingSeconds = 0;
@@ -244,16 +246,22 @@
             remainingSeconds -= 15;
           }
           displayTime();
-          for (let i = 0; i < selectedCards.length; i++) {
-            let newP = document.createElement("p");
-            newP.appendChild(document.createTextNode("Not a Set :("));
-            selectedCards[i].appendChild(newP);
-            selectedCards[i].classList.toggle("selected");
-            selectedCards[i].classList.toggle("hide-imgs");
-          }
+          displayMessage(selectedCards, "Not a Set :(");
         }
-        setTimeout(function() {genNewCards(selectedCards);}, SECOND);
+        setTimeout(function() {
+          genNewCards(selectedCards);}
+          , SECOND);
       }
+    }
+  }
+
+  function displayMessage(selectedCards, message) {
+    for (let i = 0; i < selectedCards.length; i++) {
+      let newP = document.createElement("p");
+      newP.appendChild(document.createTextNode(message));
+      selectedCards[i].appendChild(newP);
+      selectedCards[i].classList.toggle("selected");
+      selectedCards[i].classList.toggle("hide-imgs");
     }
   }
 
@@ -263,7 +271,7 @@
    */
   function genNewCards(selected) {
     for (let i = 0; i < selected.length; i++) {
-      id("board").replaceChild(generateUniqueCard(totalCards === 9), selected[i]);
+      id("board").replaceChild(generateUniqueCard(totalCards === EASY_NUMBER), selected[i]);
     }
   }
 
