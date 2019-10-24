@@ -16,6 +16,7 @@
   const SHAPE_ARRAY = ["diamond", "oval", "squiggle"];
   const COLOR_ARRAY = ["red", "green", "purple"];
   const COUNT_ARRAY = [1, 2, 3];
+  const SECOND = 1000;
 
   let timerId;
   let remainingSeconds;
@@ -108,13 +109,13 @@
   /**
    * Generates a card unique to any others on the board
    * @param {boolean} isEasy - Whether the gamemode is set to "Easy"
-   * @return card - A newly generated unique card
+   * @return {div} card - A newly generated unique card
    */
   function generateUniqueCard(isEasy) {
     let card = document.createElement("div");
     card.classList.add("card");
     card.addEventListener("click", cardSelected);
-    let attributes = findUniqueAttributes(isEasy);
+    let attributes = findUniqueAttributes(totalCards === 9);
     card.id = generateId(attributes);
 
     for (let i = 1; i <= attributes[3]; i++) {
@@ -172,7 +173,7 @@
     let times = qs("select");
     remainingSeconds = times.options[times.selectedIndex].value;
     displayTime();
-    timerId = setInterval(advanceTimer, 1000);
+    timerId = setInterval(advanceTimer, SECOND);
   }
 
   /**
@@ -251,14 +252,14 @@
             selectedCards[i].classList.toggle("hide-imgs");
           }
         }
-        setTimeout(function() {genNewCards(selectedCards);}, 1000);
+        setTimeout(function() {genNewCards(selectedCards);}, SECOND);
       }
     }
   }
 
   /**
    * Replaces cards in the passed-in array with newly generated cards
-   * @param selected {array} - An array of cards
+   * @param {array} selected - An array of cards
    */
   function genNewCards(selected) {
     for (let i = 0; i < selected.length; i++) {
