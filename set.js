@@ -114,7 +114,7 @@
     let card = document.createElement("div");
     card.classList.add("card");
     card.addEventListener("click", cardSelected);
-    let attributes = findUniqueAttributes(totalCards === 9);
+    let attributes = findUniqueAttributes(isEasy);
     card.id = generateId(attributes);
 
     for (let i = 1; i <= attributes[3]; i++) {
@@ -206,7 +206,7 @@
   }
 
   /**
-   * Puts the board in endgame state.
+   * Puts the board in endgame state
    */
   function endGame() {
     clearInterval(timerId);
