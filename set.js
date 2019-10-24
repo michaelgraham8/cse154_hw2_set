@@ -22,7 +22,6 @@
   const EASY_NUMBER = 9;
   const STANDARD_NUMBER = 12;
   const SECOND_PENALTY = 15;
-  const
 
   let timerId;
   let remainingSeconds;
